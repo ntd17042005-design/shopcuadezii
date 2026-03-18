@@ -1,3 +1,4 @@
+document.documentElement.classList.add("js");
 const state={q:"",cat:"all",sort:"hot"};
 const $=s=>document.querySelector(s),$$=s=>Array.from(document.querySelectorAll(s));
 const productGrid=$("#productGrid"),featuredGrid=$("#featuredGrid"),emptyState=$("#emptyState");
