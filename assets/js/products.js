@@ -37,7 +37,7 @@ const PRODUCTS=[
 {id:"vieon-1m",title:"VieON (1 tháng) acc cấp hoặc chính chủ",price:100000,priceText:"100.000 VNĐ",cat:"entertain",icon:"vieon",note:"BHF",tags:["contact"],image:"assets/images/products/vieon-1m.png"},
 {id:"yt-1m-20",title:"YouTube Premium (1 Tháng)",price:40000,priceText:"40.000 VNĐ",cat:"youtube",icon:"youtube",note:"BHF",tags:["hot","featured","deal"],image:"assets/images/products/youtube-1m.png"},
 {id:"yt-2m-80",title:"YouTube Premium (2 Tháng)",price:80000,priceText:"80.000 VNĐ",cat:"youtube",icon:"youtube",note:"BHF",tags:["hot"],image:"assets/images/products/youtube-2m.png"},
-{id:"yt-6m-fixed-350",title:"YouTube Premium (6 Tháng) - Cố định",price:350000,priceText:"350.000 VNĐ",cat:"youtube",icon:"youtube",note:"Không chuyển fam",tags:["hot"],image:"assets/images/products/youtube-6m-fixed.png"},
-{id:"yt-1y-fixed-499",title:"YouTube Premium (1 Năm) - Cố định",price:499000,priceText:"499.000 VNĐ",cat:"youtube",icon:"youtube",note:"Không chuyển fam",tags:["hot"],image:"assets/images/products/youtube-1y-fixed.png"}
+{id:"yt-6m-fixed-350",title:"YouTube Premium (6 Tháng) - Cố định",price:420000,priceText:"420.000 VNĐ",cat:"youtube",icon:"youtube",note:"Không chuyển fam",tags:["hot"],image:"assets/images/products/youtube-6m-fixed.png"},
+{id:"yt-1y-fixed-499",title:"YouTube Premium (1 Năm) - Cố định",price:550000,priceText:"550.000 VNĐ",cat:"youtube",icon:"youtube",note:"Không chuyển fam",tags:["hot"],image:"assets/images/products/youtube-1y-fixed.png"}
 ];
 const FEATURED_IDS=["chatgpt-pro-slot","gemini-4m-kbh","yt-1m-20","microsoft-365-1y","chatgpt-pro-admin","gemini-business-admin"];
