@@ -43,7 +43,6 @@ const PRODUCTS = [
   {id:"capcut-pro-6m",title:"CapCut Pro (6 tháng) cá nhân tài khoản cấp",price:150000,priceText:"150.000 VNĐ",cat:"creative",icon:"capcut",note:"BHF",tags:["hot"],image:"assets/images/products/capcut-pro-6m.png"},
   {id:"duolingo-super-1y",title:"Duolingo Super (1 năm)",price:150000,priceText:"150.000 VNĐ",cat:"office",icon:"duolingo",note:"BHF",tags:["hot"],image:"assets/images/products/duolingo-super-1y.png"},
   {id:"google-ultra-1m-slot",title:"Google Ultra (1 tháng) slot",price:300000,priceText:"300.000 VNĐ",cat:"ai",icon:"google",note:"BHF",tags:["hot"],image:"assets/images/products/google-ultra-1m-slot.png"},
-  {id:"zoom-pro-1m-nang-chinh-chu",title:"Zoom Pro (1 tháng) nâng chính chủ",price:70000,priceText:"70.000 VNĐ",cat:"office",icon:"zoom",note:"BHF",tags:["deal"],image:"assets/images/products/zoom-pro-1m-nang-chinh-chu.png"},
   {id:"perplexity-pro-1y",title:"Perplexity Pro (1 năm)",price:470000,priceText:"470.000 VNĐ",cat:"ai",icon:"perplexity",note:"BHF",tags:["hot"],image:"assets/images/products/perplexity-pro-1y.png"},
   {id:"elsa-premium-1y",title:"ELSA Premium (1 năm)",price:700000,priceText:"700.000 VNĐ",cat:"office",icon:"elsa",note:"BHF",tags:["hot"],image:"assets/images/products/elsa-premium-1y.png"},
 
