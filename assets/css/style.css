@@ -785,3 +785,73 @@ code{
     transform:none !important
   }
 }
+/* ===== FIX LỖI ẢNH ĐÈ ===== */
+.product-media.has-image .product-fallback {
+  display: none !important;
+}
+
+.product-image {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.product-media.has-image .product-image {
+  opacity: 1;
+}
+
+/* ===== GIẢM LAG ===== */
+
+/* giảm blur background */
+.bg-orb {
+  filter: blur(35px) !important;
+  opacity: 0.7;
+}
+
+/* bỏ hiệu ứng nặng */
+.product-media::before,
+.controls.glass::before {
+  display: none !important;
+}
+
+/* nhẹ shadow */
+.product-card {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+/* giảm scale ảnh */
+.product-card:hover img {
+  transform: scale(1.03) !important;
+}
+
+/* tắt tilt nặng */
+.product-card.tilt-on {
+  transform: translateY(-5px) !important;
+}
+
+/* animation nhẹ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.4s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: none;
+}
+
+/* mobile tối ưu */
+@media (max-width:768px){
+  .bg-orb{
+    display:none;
+  }
+
+  .product-card{
+    transform:none !important;
+  }
+}
