@@ -1,141 +1,123 @@
 document.documentElement.classList.add("js");
 
-const state={q:"",cat:"all",sort:"hot"};
-const $=s=>document.querySelector(s),$$=s=>Array.from(document.querySelectorAll(s));
-const productGrid=$("#productGrid"),featuredGrid=$("#featuredGrid"),emptyState=$("#emptyState");
+const grid = document.getElementById("productGrid");
+const featuredGrid = document.getElementById("featuredGrid");
+const q = document.getElementById("q");
+const cat = document.getElementById("cat");
+const sort = document.getElementById("sort");
+const emptyState = document.getElementById("emptyState");
 
-const CATEGORY_NAME={
-  youtube:"YouTube Premium",
-  ai:"ChatGPT & AI Tools",
-  gemini:"Gemini",
-  office:"Văn phòng / học tập",
-  creative:"Thiết kế / sáng tạo",
-  entertain:"Giải trí"
-};
+const formatPrice = (p) =>
+  p.toLocaleString("vi-VN") + " VNĐ";
 
-const isMobile = window.matchMedia("(max-width: 768px)").matches || !window.matchMedia("(pointer:fine)").matches;
+function createProductCard(item) {
+  return `
+    <div class="product-card reveal">
+      
+      <div class="product-media">
+        <img 
+          class="product-image" 
+          src="${item.image}" 
+          alt="${item.title}"
+          loading="lazy"
+          onload="this.parentElement.classList.add('has-image')"
+          onerror="this.style.display='none'; this.parentElement.classList.remove('has-image')"
+        >
+        <div class="product-fallback">
+          <div class="icon-fallback">
+            ${ICONS[item.icon] || ""}
+          </div>
+        </div>
+      </div>
 
-function categoryName(cat){return CATEGORY_NAME[cat]||cat}
-function scoreProduct(p){
-  let s=0;
-  if((p.tags||[]).includes("featured"))s+=100;
-  if((p.tags||[]).includes("hot"))s+=35;
-  if((p.tags||[]).includes("deal"))s+=15;
-  if(p.cat==="youtube")s+=8;
-  if(p.cat==="ai"||p.cat==="gemini")s+=7;
-  return s;
+      <div class="card-badge">${item.cat}</div>
+
+      <h4>${item.title}</h4>
+      <p>${item.note || ""}</p>
+
+      <div class="product-price">
+        <strong>${item.priceText || formatPrice(item.price)}</strong>
+        <span>giá bán</span>
+      </div>
+
+      <div class="card-meta">
+        <div class="option-row">
+          <span>Danh mục</span>
+          <span>${item.cat}</span>
+        </div>
+        <div class="option-row">
+          <span>Tình trạng</span>
+          <span>${item.note}</span>
+        </div>
+      </div>
+
+      <div class="card-actions">
+        <a href="${CONFIG.facebookLink}" target="_blank" class="btn primary">Mua ngay</a>
+      </div>
+
+    </div>
+  `;
 }
-function fallbackIcon(iconKey){return `<div class="icon-fallback">${ICONS[iconKey]||ICONS.chatgpt}</div>`}
-function mediaMarkup(p){
-  return `<div class="product-media">
-    <div class="product-fallback">${fallbackIcon(p.icon)}</div>
-    <img class="product-image" src="${p.image}" alt="${p.title}" loading="lazy" onerror="this.style.display='none'">
-  </div>`;
+
+function renderFeatured() {
+  if (!featuredGrid) return;
+
+  const featured = PRODUCTS.filter(p => FEATURED_IDS.includes(p.id));
+  featuredGrid.innerHTML = featured.map(createProductCard).join("");
 }
-function buildBuyLink(p){
-  const text=encodeURIComponent(`Xin chào, mình muốn mua: ${p.title} - ${p.priceText}`);
-  return `${CONFIG.facebookLink}?sk=messages&text=${text}`;
-}
-function featuredItems(){return FEATURED_IDS.map(id=>PRODUCTS.find(p=>p.id===id)).filter(Boolean)}
-function filteredProducts(){
-  const q=state.q.trim().toLowerCase();
-  let list=PRODUCTS.filter(p=>{
-    const haystack=`${p.title} ${p.note||""} ${categoryName(p.cat)}`.toLowerCase();
-    return (!q||haystack.includes(q))&&(state.cat==="all"||p.cat===state.cat);
-  });
-  list.sort((a,b)=>{
-    if(state.sort==="price-asc")return (a.price??999999999)-(b.price??999999999);
-    if(state.sort==="price-desc")return (b.price??-1)-(a.price??-1);
-    if(state.sort==="name")return a.title.localeCompare(b.title,"vi");
-    return scoreProduct(b)-scoreProduct(a)||((a.price??999999999)-(b.price??999999999));
-  });
+
+function getFilteredProducts() {
+  let list = [...PRODUCTS];
+
+  if (q.value.trim()) {
+    const keyword = q.value.toLowerCase();
+    list = list.filter(p => p.title.toLowerCase().includes(keyword));
+  }
+
+  if (cat.value !== "all") {
+    list = list.filter(p => p.cat === cat.value);
+  }
+
+  if (sort.value === "price-asc") list.sort((a,b)=>a.price-b.price);
+  if (sort.value === "price-desc") list.sort((a,b)=>b.price-a.price);
+  if (sort.value === "name") list.sort((a,b)=>a.title.localeCompare(b.title));
+
   return list;
 }
-function productCardMarkup(p,featured=false,index=0){
-  const badge=featured?"🔥 HOT • NỔI BẬT":categoryName(p.cat);
-  const badgeClass=featured?"feature-badge":"card-badge";
-  return `<article class="${featured?"feature-card":"product-card"} cursor-hover fx-card" data-cursor-hover style="animation-delay:${Math.min(index*70,700)}ms">
-    ${mediaMarkup(p)}
-    <div class="${badgeClass}">${badge}</div>
-    <h4>${p.title}</h4>
-    <p>${p.note||"Liên hệ để chốt đơn nhanh."}</p>
-    <div class="${featured?"feature-price":"product-price"}"><strong>${p.priceText}</strong><span>giá bán</span></div>
-    <div class="${featured?"feature-options":"card-meta"}">
-      <div class="option-row"><span>Danh mục</span><span>${categoryName(p.cat)}</span></div>
-      <div class="option-row"><span>Tình trạng</span><span>${p.note||"Liên hệ"}</span></div>
-    </div>
-    <div class="card-actions">
-      <a class="btn primary cursor-hover" href="${buildBuyLink(p)}" target="_blank" rel="noreferrer">Mua ngay</a>
-    </div>
-  </article>`;
+
+function renderProducts() {
+  const list = getFilteredProducts();
+
+  if (!list.length) {
+    emptyState.classList.remove("hidden");
+    grid.innerHTML = "";
+    return;
+  }
+
+  emptyState.classList.add("hidden");
+  grid.innerHTML = list.map(createProductCard).join("");
+
+  revealOnScroll();
 }
-function renderFeatured(){
-  featuredGrid.innerHTML=featuredItems().map((p,i)=>productCardMarkup(p,true,i)).join("");
-  bindFxCards();
-}
-function renderProducts(){
-  const items=filteredProducts();
-  emptyState.classList.toggle("hidden",items.length>0);
-  productGrid.innerHTML=items.map((p,i)=>productCardMarkup(p,false,i)).join("");
-  bindFxCards();
-}
-function bindControls(){
-  $("#q").addEventListener("input",e=>{state.q=e.target.value;renderProducts()});
-  $("#cat").addEventListener("change",e=>{state.cat=e.target.value;renderProducts()});
-  $("#sort").addEventListener("change",e=>{state.sort=e.target.value;renderProducts()});
-}
-function bindReveal(){
+
+function revealOnScroll() {
   const els = document.querySelectorAll(".reveal");
-  if(isMobile || !("IntersectionObserver" in window)){
-    els.forEach(el=>el.classList.add("show"));
-    return;
-  }
-  const io=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting) entry.target.classList.add("show");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        observer.unobserve(entry.target);
+      }
     });
-  },{threshold:.05, rootMargin:"0px 0px 80px 0px"});
-  els.forEach(el=>io.observe(el));
+  }, { threshold: 0.1 });
+
+  els.forEach(el => observer.observe(el));
 }
-function bindFxCards(){
-  if(isMobile){
-    $$(".fx-card").forEach(card=>{
-      card.classList.remove("tilt-on");
-      card.style.setProperty("--rx","0deg");
-      card.style.setProperty("--ry","0deg");
-      card.style.setProperty("--mx","50%");
-      card.style.setProperty("--my","50%");
-    });
-    return;
-  }
-  $$(".fx-card").forEach(card=>{
-    card.onpointermove = e=>{
-      const r=card.getBoundingClientRect();
-      const px=(e.clientX-r.left)/r.width;
-      const py=(e.clientY-r.top)/r.height;
-      const rx=(py-.5)*-8;
-      const ry=(px-.5)*10;
-      card.style.setProperty("--rx",`${rx.toFixed(2)}deg`);
-      card.style.setProperty("--ry",`${ry.toFixed(2)}deg`);
-      card.style.setProperty("--mx",`${(px*100).toFixed(1)}%`);
-      card.style.setProperty("--my",`${(py*100).toFixed(1)}%`);
-      card.classList.add("tilt-on");
-    };
-    card.onpointerleave = ()=>{
-      card.classList.remove("tilt-on");
-      card.style.setProperty("--rx","0deg");
-      card.style.setProperty("--ry","0deg");
-      card.style.setProperty("--mx","50%");
-      card.style.setProperty("--my","50%");
-    };
-  });
-}
+
+q.addEventListener("input", renderProducts);
+cat.addEventListener("change", renderProducts);
+sort.addEventListener("change", renderProducts);
 
 renderFeatured();
 renderProducts();
-bindControls();
-bindReveal();
-
-window.addEventListener("load", ()=>{
-  document.querySelectorAll(".reveal").forEach(el=>el.classList.add("show"));
-});
