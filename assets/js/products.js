@@ -46,7 +46,7 @@ const PRODUCTS=[
 {id:"yt-1y-fixed-499",title:"YouTube Premium (1 Năm) - Cố định",price:550000,priceText:"550.000 VNĐ",cat:"youtube",icon:"youtube",note:"Không chuyển fam",tags:["hot"],image:"assets/images/products/youtube-1y-fixed.png"},
 {id:"capcut-pro-6m",title:"CapCut Pro (6 tháng) cá nhân tài khoản cấp",price:150000,priceText:"150.000 VNĐ",cat:"creative",icon:"capcut",note:"BHF",tags:["hot","new"],image:"assets/images/products/capcut-pro-6m.png"},
 {id:"duolingo-super-1y",title:"Duolingo Super (1 năm)",price:150000,priceText:"150.000 VNĐ",cat:"office",icon:"elsa",note:"BHF",tags:["new"],image:"assets/images/products/duolingo-super-1y.png"},
-{id:"google-ultra-1m-slot",title:"Combo (Google Ultra + Google Antigravity + Youtube Premium + 25.000 Credit + 30TB) (1 THÁNG)"  slot",price:300000,priceText:"380.000 VNĐ",cat:"ai",icon:"gemini",note:"BHF",tags:["new","hot"],image:"assets/images/products/google-ultra-1m-slot.png"},
+{id:"google-ultra-1m-slot",title:"Combo (Google Ultra + Google Antigravity + Youtube Premium + 25.000 Credit + 30TB)  1 tháng",price:380000,priceText:"380.000 VNĐ",cat:"ai",icon:"gemini",note:"BHF",tags:["new","hot"],image:"assets/images/products/google-ultra-1m-slot.png"},
 {id:"perplexity-pro-1y",title:"Perplexity Pro (1 năm)",price:470000,priceText:"470.000 VNĐ",cat:"ai",icon:"chatgpt",note:"BHF",tags:["new"],image:"assets/images/products/perplexity-pro-1y.png"},
 {id:"elsa-premium-1y",title:"ELSA Premium (1 năm)",price:700000,priceText:"700.000 VNĐ",cat:"office",icon:"elsa",note:"BHF",tags:["new"],image:"assets/images/products/elsa-premium-1y.png"}
 ];
