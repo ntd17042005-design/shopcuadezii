@@ -33,6 +33,7 @@ const PRODUCTS=[
 {id:"gemini-business-admin",title:"Gemini Business 1 tháng (Admin) Add được 14 slot",price:100000,priceText:"100.000 VNĐ",cat:"gemini",icon:"gemini",note:"BHF - KBH khi add lỗi",tags:["hot"],image:"assets/images/products/gemini-business-admin.png"},
 {id:"adobe-full-3m",title:"Adobe Full App phiên bản mới nhất (3 tháng)",price:100000,priceText:"100.000 VNĐ",cat:"creative",icon:"adobe",note:"BH 7 ngày",tags:["hot"],image:"assets/images/products/adobe-full-3m.png"},
 {id:"microsoft-365-1y",title:"Microsoft 365 + Google One 1TB (1 năm) Slot Farm",price:100000,priceText:"100.000 VNĐ",cat:"office",icon:"microsoft",note:"BHF",tags:["hot","featured"],image:"assets/images/products/microsoft-365-1y.png"},
+{id:"canva-pro-1t",title:"Canva Pro (1 Tháng ) Tài Khoản Cấp",price:40000,priceText:"40.000 VNĐ",cat:"creative",icon:"canva",note:"BHF",tags:["hot"],image:"assets/images/products/canva-pro-1t.png"},
 {id:"canva-pro-1y",title:"Canva Pro (1 năm) Slot chính chủ",price:230000,priceText:"230.000 VNĐ",cat:"creative",icon:"canva",note:"BH 1 tháng",tags:["hot"],image:"assets/images/products/canva-pro-1y.png"},
 {id:"canva-edu-3y",title:"Canva Edu (3 năm) Slot",price:125000,priceText:"125.000 VNĐ",cat:"creative",icon:"canva",note:"BH 3 tháng",tags:["deal"],image:"assets/images/products/canva-edu-3y.png"},
 {id:"capcut-pro-1y",title:"CapCut Pro (1 năm) cấp tài khoản",price:300000,priceText:"300.000 VNĐ",cat:"creative",icon:"capcut",note:"BHF",tags:["hot"],image:"assets/images/products/capcut-pro-1y.png"},
